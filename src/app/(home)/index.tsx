@@ -8,8 +8,13 @@ import { CATEGORIES } from '@/data/dummy-data';
 const StartGame = () => {
 	const router = useRouter();
 
-	const handleCategoryPress = () => {
-		router.push('/category');
+	const handleCategoryPress = (categoryId: string) => {
+		router.push({
+			pathname: '/category/[categoryId]',
+			params: {
+				categoryId,
+			},
+		});
 	};
 
 	return (
@@ -26,7 +31,7 @@ const StartGame = () => {
 					<CategoryGridTile
 						title={item.title}
 						color={item.color}
-						onPress={handleCategoryPress}
+						onPress={() => handleCategoryPress(item.id)}
 					/>
 				)}
 				numColumns={2}
