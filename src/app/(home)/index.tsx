@@ -1,22 +1,33 @@
+import { Stack, useRouter } from 'expo-router';
 import { FlatList, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-// import { useRouter } from 'expo-router';
 
 import CategoryGridTile from '@/components/CategoryGridTile';
 import { CATEGORIES } from '@/data/dummy-data';
 
 const StartGame = () => {
-	// const router = useRouter();
+	const router = useRouter();
 
-	// router.push(`/game/${chosenNumber}`);
+	const handleCategoryPress = () => {
+		router.push('/category');
+	};
 
 	return (
-		<SafeAreaView style={styles.container}>
+		<SafeAreaView edges={['bottom', 'left', 'right']} style={styles.container}>
+			<Stack.Screen
+				options={{
+					title: 'All Categories',
+				}}
+			/>
 			<FlatList
 				data={CATEGORIES}
 				keyExtractor={(item) => item.id}
 				renderItem={({ item }) => (
-					<CategoryGridTile title={item.title} color={item.color} />
+					<CategoryGridTile
+						title={item.title}
+						color={item.color}
+						onPress={handleCategoryPress}
+					/>
 				)}
 				numColumns={2}
 			/>

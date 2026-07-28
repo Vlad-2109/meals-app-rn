@@ -3,9 +3,10 @@ import { Platform, Pressable, StyleSheet, Text, View } from 'react-native';
 type CategoryGridTileProps = {
 	title: string;
 	color: string;
+	onPress: () => void;
 };
 
-const CategoryGridTile = ({ title, color }: CategoryGridTileProps) => {
+const CategoryGridTile = ({ title, color, onPress }: CategoryGridTileProps) => {
 	return (
 		<View style={styles.gridItem}>
 			<Pressable
@@ -14,6 +15,7 @@ const CategoryGridTile = ({ title, color }: CategoryGridTileProps) => {
 					pressed && styles.buttonPressed,
 				]}
 				android_ripple={{ color: '#ccc' }}
+				onPress={onPress}
 			>
 				<View style={[styles.innerContainer, { backgroundColor: color }]}>
 					<Text style={styles.title}>{title}</Text>
@@ -59,7 +61,6 @@ const styles = StyleSheet.create({
 		flex: 1,
 		padding: 16,
 		borderRadius: 8,
-
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
