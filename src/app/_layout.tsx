@@ -15,6 +15,7 @@ export default function RootLayout() {
 					contentStyle: {
 						backgroundColor: '#ffffff',
 					},
+					headerBackButtonDisplayMode: 'minimal',
 				}}
 			/>
 		</SafeAreaProvider>
