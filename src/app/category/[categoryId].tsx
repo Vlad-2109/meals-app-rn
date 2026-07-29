@@ -24,7 +24,15 @@ const MealsOverview = () => {
 				<FlatList
 					data={displayedMeals}
 					keyExtractor={(item) => item.id}
-					renderItem={({ item }) => <MealItem title={item.title} />}
+					renderItem={({ item }) => (
+						<MealItem
+							title={item.title}
+							imageUrl={item.imageUrl}
+							duration={item.duration}
+							complexity={item.complexity}
+							affordability={item.affordability}
+						/>
+					)}
 				/>
 			</View>
 		</SafeAreaView>
