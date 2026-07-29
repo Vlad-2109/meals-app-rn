@@ -12,10 +12,14 @@ export default function RootLayout() {
 			<Stack
 				screenOptions={{
 					headerShown: true,
-					contentStyle: {
-						backgroundColor: '#ffffff',
+					headerStyle: {
+						backgroundColor: '#321401',
 					},
 					headerBackButtonDisplayMode: 'minimal',
+					headerTintColor: 'white',
+					contentStyle: {
+						backgroundColor: '#3f2f25',
+					},
 				}}
 			/>
 		</SafeAreaProvider>

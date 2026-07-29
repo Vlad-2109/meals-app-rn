@@ -17,7 +17,7 @@ const MealsOverview = () => {
 		<SafeAreaView edges={['bottom', 'left', 'right']} style={styles.container}>
 			<Stack.Screen
 				options={{
-					title: 'Meals Overview',
+					title: 'Meal Overview',
 				}}
 			/>
 			<View style={styles.innerContainer}>
