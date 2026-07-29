@@ -2,7 +2,7 @@ import { Stack, useLocalSearchParams } from 'expo-router';
 import { FlatList, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { MEALS } from '@/data/dummy-data';
+import { CATEGORIES, MEALS } from '@/data/dummy-data';
 
 import MealItem from '@/components/MealItem';
 
@@ -13,11 +13,15 @@ const MealsOverview = () => {
 		mealItem.categoryIds.includes(categoryId as string),
 	);
 
+	const categoryTitle = CATEGORIES.find(
+		(category) => category.id === categoryId,
+	)?.title;
+
 	return (
 		<SafeAreaView edges={['bottom', 'left', 'right']} style={styles.container}>
 			<Stack.Screen
 				options={{
-					title: 'Meal Overview',
+					title: categoryTitle,
 				}}
 			/>
 			<View style={styles.innerContainer}>
