@@ -1,22 +1,40 @@
 import { Stack, useLocalSearchParams } from 'expo-router';
-import { StyleSheet, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { MEALS } from '@/data/dummy-data';
 
+import MealDetails from '@/components/MealDetails';
+
 const MealDetailScreen = () => {
 	const { mealId } = useLocalSearchParams();
 
-	const mealTitle = MEALS.find((meal) => meal.id === mealId)?.title;
+	const selectedMeal = MEALS.find((meal) => meal.id === mealId);
 
 	return (
 		<SafeAreaView edges={['bottom', 'left', 'right']} style={styles.container}>
 			<Stack.Screen
 				options={{
-					title: mealTitle,
+					title: selectedMeal?.title,
 				}}
 			/>
-			<View></View>
+			<View>
+				<Image source={{ uri: selectedMeal?.imageUrl }} />
+				<Text>{selectedMeal?.title}</Text>
+				<MealDetails
+					duration={selectedMeal?.duration ?? 0}
+					complexity={selectedMeal?.complexity ?? ''}
+					affordability={selectedMeal?.affordability ?? ''}
+				/>
+				<Text>Ingredients</Text>
+				{selectedMeal?.ingredients.map((ingredient) => (
+					<Text key={ingredient}>{ingredient}</Text>
+				))}
+				<Text>Steps</Text>
+				{selectedMeal?.steps.map((step) => (
+					<Text key={step}>{step}</Text>
+				))}
+			</View>
 		</SafeAreaView>
 	);
 };
