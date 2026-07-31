@@ -30,6 +30,7 @@ const MealsOverview = () => {
 					keyExtractor={(item) => item.id}
 					renderItem={({ item }) => (
 						<MealItem
+							mealId={item.id}
 							title={item.title}
 							imageUrl={item.imageUrl}
 							duration={item.duration}

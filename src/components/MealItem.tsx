@@ -1,3 +1,4 @@
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import {
 	Image,
 	Platform,
@@ -8,6 +9,7 @@ import {
 } from 'react-native';
 
 type MealItemProps = {
+	mealId: string;
 	title: string;
 	imageUrl: string;
 	duration: number;
@@ -16,17 +18,28 @@ type MealItemProps = {
 };
 
 const MealItem = ({
+	mealId,
 	title,
 	imageUrl,
 	duration,
 	complexity,
 	affordability,
 }: MealItemProps) => {
+	const { categoryId } = useLocalSearchParams();
+	const router = useRouter();
+
+	const handleMealPress = (mealId: string) => {
+		router.push({
+			pathname: '/category/[categoryId]/meal/[mealId]',
+			params: { categoryId: categoryId as string, mealId },
+		});
+	};
 	return (
 		<View style={styles.mealItem}>
 			<Pressable
 				android_ripple={{ color: '#ccc' }}
 				style={({ pressed }) => pressed && styles.itemPressed}
+				onPress={() => handleMealPress(mealId)}
 			>
 				<View style={styles.innerContainer}>
 					<View>
