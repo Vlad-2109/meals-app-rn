@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { MEALS } from '@/data/dummy-data';
 
+import IconButton from '@/components/IconButton';
 import List from '@/components/MealDetail/List';
 import Subtitle from '@/components/MealDetail/Subtitle';
 import MealDetails from '@/components/MealDetails';
@@ -13,11 +14,22 @@ const MealDetailScreen = () => {
 
 	const selectedMeal = MEALS.find((meal) => meal.id === mealId);
 
+	const handleHeaderButtonPress = () => {
+		console.log('Header button pressed');
+	};
+
 	return (
 		<SafeAreaView edges={['bottom', 'left', 'right']} style={styles.container}>
 			<Stack.Screen
 				options={{
 					title: selectedMeal?.title,
+					headerRight: () => (
+						<IconButton
+							icon="star"
+							color="white"
+							onPress={handleHeaderButtonPress}
+						/>
+					),
 				}}
 			/>
 			<ScrollView>
