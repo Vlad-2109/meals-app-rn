@@ -1,4 +1,5 @@
-import { Stack } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
+import { Drawer } from 'expo-router/drawer';
 import { StatusBar } from 'expo-status-bar';
 import {
 	SafeAreaProvider,
@@ -9,19 +10,38 @@ export default function RootLayout() {
 	return (
 		<SafeAreaProvider initialMetrics={initialWindowMetrics}>
 			<StatusBar style="light" />
-			<Stack
+			<Drawer
 				screenOptions={{
-					headerShown: true,
-					headerStyle: {
-						backgroundColor: '#321401',
-					},
-					headerBackButtonDisplayMode: 'minimal',
+					headerStyle: { backgroundColor: '#321401' },
 					headerTintColor: 'white',
-					contentStyle: {
-						backgroundColor: '#3f2f25',
-					},
+					drawerStyle: { backgroundColor: '#321401' },
+					drawerActiveTintColor: 'white',
+					drawerInactiveTintColor: '#ccc',
 				}}
-			/>
+			>
+				<Drawer.Screen
+					name="(main)"
+					options={{
+						headerShown: false,
+						title: 'Categories',
+						drawerLabel: 'Categories',
+						drawerIcon: ({ color, size }) => (
+							<Ionicons color={color} size={size} name="list" />
+						),
+					}}
+				/>
+				<Drawer.Screen
+					name="favorites"
+					options={{
+						headerShown: true,
+						title: 'Favorites',
+						drawerLabel: 'Favorites',
+						drawerIcon: ({ color, size }) => (
+							<Ionicons color={color} size={size} name="star" />
+						),
+					}}
+				/>
+			</Drawer>
 		</SafeAreaProvider>
 	);
 }
